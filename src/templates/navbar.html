@@ -17,10 +17,11 @@
                 {% if request.user.is_staff %}
               <li class="nav-item"><a href="/blog" class="nav-link ">Blog</a>
               </li>
+                  {% endif %}
+              {% endif %}
                   <li class="nav-item"><a href="/blog-new" class="nav-link ">Post</a>
                   </li>
-                {% endif %}
-              {% endif %}
+               
             </ul>
            
           </div>
