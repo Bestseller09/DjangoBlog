@@ -1,0 +1,31 @@
+
+
+<!-- Main Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <!-- Navbar Brand -->
+          <div class="navbar-header d-flex align-items-center justify-content-between">
+            <!-- Navbar Brand --><a href="/" class="navbar-brand">Django Blog</a>
+            <!-- Toggle Button-->
+            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
+          </div>
+          <!-- Navbar Menu -->
+          <div id="navbarcollapse" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="/" class="nav-link">Home</a>
+              </li>
+              {%if request.user.is_authenticated %}
+                {% if request.user.is_staff %}
+              <li class="nav-item"><a href="/blog" class="nav-link ">Blog</a>
+              </li>
+                  <li class="nav-item"><a href="/blog-new" class="nav-link ">Post</a>
+                  </li>
+                {% endif %}
+              {% endif %}
+            </ul>
+           
+          </div>
+          <form class="form-inline my-2 my-lg-0" action='/search/'>
+              <input class="form-control mr-sm-2" type="search" name='q' placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </nav>

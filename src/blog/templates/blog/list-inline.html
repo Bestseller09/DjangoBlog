@@ -1,0 +1,49 @@
+<!-- <li><a href='{{blog_post.get_absolute_url}}'>{{blog_post.title}}</a></li>-->
+<style>
+.grid { 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+  }
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+.text {
+  padding: 0 20px 20px;
+}
+.text > button {
+  background: gray;
+  border: 0;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  }
+</style>
+
+<div class='card {% if not blog_post.publish_date %} border border-warning text-dark {% endif %}'>
+    <div class='card-body' >
+       <article>
+        {% if blog_post.image %}
+        <a href="{{blog_post.get_absolute_url}}"><img src="{{ blog_post.image.url}}"  class='card-img-top' /></a>
+        {% endif %}
+        <h5 class='class-title'>{{blog_post.title}}</h5>
+        <p class='card-text'>
+           <small class='text-muted'>{{blog_post.publish_date}}</small>
+            {% if truncate %}
+                 {{blog_post.content | linebreaks | truncatewords:30 }}
+            {% else %}
+                 {{blog_post.content | linebreaks }}
+            {% endif %}
+        </p>
+        {% if not detail %}
+           {% if not blog_post.publish_date %} Draft {% endif %}
+            <a href="{{blog_post.get_absolute_url}}">view</a>
+        {% endif %}
+        </article>
+    </div>
+</div>
